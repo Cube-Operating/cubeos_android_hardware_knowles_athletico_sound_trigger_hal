@@ -1855,7 +1855,7 @@ static void destroy_sensor_model(struct knowles_sound_trigger_device *stdev)
     ALOGD("-%s-", __func__);
 }
 
-static void sensor_timeout_recover()
+static void sensor_timeout_recover(sigval_t sigval)
 {
     int err = 0;
     ALOGD("+%s+", __func__);
@@ -2097,7 +2097,7 @@ static void destroy_chre_model(struct knowles_sound_trigger_device *stdev)
     ALOGD("-%s-", __func__);
 }
 
-static void chre_timeout_recover()
+static void chre_timeout_recover(sigval_t sigval)
 {
     int err = 0;
     ALOGD("+%s+", __func__);
