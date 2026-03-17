@@ -2311,6 +2311,14 @@ static void *callback_thread_loop(void *context)
                 continue;
             }
             for (i = 0; i < n;) {
+                size_t remaining = n - i;
+                size_t len = strnlen(msg + i, remaining);
+                if (len == remaining) {
+                    ALOGE("Malformed message at offset %zu (no NUL within %zu bytes): %.*s",
+                        (size_t)i, remaining, (int)remaining, msg + i);
+                    break;
+                }
+
                 if (strstr(msg + i, IAXXX_VQ_EVENT_STR)) {
                     ALOGI("%s", IAXXX_VQ_EVENT_STR);
 
